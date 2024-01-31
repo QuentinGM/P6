@@ -139,8 +139,9 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+    margin: auto;
 }
+
 #contact > * {
 	text-align: center;
 
@@ -161,10 +162,45 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#contact2 {
+    margin: auto;
+}
+
+#contact2 > * {
+	text-align: center;
+
+}
+#contact2 h2{
+	margin-bottom: 20px;
+}
+#contact2 form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact2 input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	width : 480px;
+}
+
+#contact2 label {
+	margin: 2em 0 1em 0;
+}
+#contact2 textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -263,6 +299,12 @@ footer nav ul {
 	justify-content: right;
 }
 
+.test2 {
+	display: flex;
+	justify-content: right;
+	margin-top: -34px;
+}
+
 #titlemodal {
 	display: flex;
 	padding-top : 30px;
@@ -270,7 +312,7 @@ footer nav ul {
 	justify-content: center;
 	text-align: center;
 	font-size : 28px;
-	padding-bottom : 50px;
+	padding-bottom : 35px;
 }
 
 .photoButton {
@@ -315,6 +357,14 @@ footer nav ul {
 	display: flex;
 }
 
+.border2 {
+	border-bottom: solid #b3b3b3 1px;
+	width : 480px;
+	padding-top : 50px;
+	margin-left : 60px;
+	display: flex;
+}
+
 .position {
 	display: flex;
 	justify-content: right;
@@ -322,6 +372,88 @@ footer nav ul {
 	bottom : 85px;
 	left: 70px;
 }
+
+.size-svg {
+	display: flex;
+	width: 30px;
+}
+
+.size-svg2 {
+	width: 11%;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	gap : 20px;
+}
+
+.mini-card {
+	padding-top : 51px;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	margin-top : -100px;
+}
+
+.center2 {
+	display: flex;
+	justify-content: center;
+}
+
+.center3 {
+	display: flex;
+	justify-content: center;
+	padding-top : 30px;
+}
+
+.center4 {
+	display : flex;
+	justify-content: center;
+	margin-top : -20px;
+}
+
+.center5 {
+	display: flex;
+	justify-content: center;
+	margin-top : -135px;
+	padding-bottom : 75px;
+}
+
+h3 {
+	margin-bottom : -10px;
+}
+
+.background {
+	background: #E8F1F6;
+	width : 80%;
+	padding-top : 150px;
+}
+
+.label-file {
+	font-family: 'Work Sans';
+	font-weight: medium;
+	font-size: 14px;
+	color: #306685;
+	background-color: #CBD6DC;
+	margin : 2em auto ;
+	width: 180px;
+	border-radius: 60px ;
+	height: 36px;
+	width: 173px;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+}
+
+.input-file {
+    display: none;
+}
+
 
 
 

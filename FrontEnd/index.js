@@ -103,8 +103,12 @@ let modal = null
 const focusableSelector= 'button, a, input, textarea'
 let focusables = []
 let previouslyFocusedElement = null
+const step1 = document.querySelector("#step1")
+const step2 = document.querySelector("#step2")
 
 const openModal = async function (e) {
+    step1.style.display ="block"
+    step2.style.display ="none"
     e.preventDefault()
     modal = document.querySelector(e.target.getAttribute('href'))
     focusables = Array.from(modal.querySelectorAll(focusableSelector))
@@ -140,9 +144,14 @@ const openModal = async function (e) {
         gallerieModale.appendChild(figure);
     });
     const button = document.querySelector('.photoButton')
-    button.querySelector('.photoButton').addEventListener('click', nextmodale)
-    console.log("test", button)
+    button.addEventListener('click', nextModale)
 }
+
+const nextModale = function() {
+    step1.style.display ="none"
+    step2.style.display ="block"
+}
+
 
 const closeModal = function (e) {
     if (modal === null) return
