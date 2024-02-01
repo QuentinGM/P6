@@ -150,6 +150,10 @@ const openModal = async function (e) {
 const nextModale = function() {
     step1.style.display ="none"
     step2.style.display ="block"
+    modal.addEventListener('click', closeModal)
+    modal.querySelector('.js-modal-close2').addEventListener('click', closeModal)
+    modal.querySelector('.size-svg').addEventListener('click', openModal)
+    modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 }
 
 
@@ -197,7 +201,7 @@ window.addEventListener('keydown', function (e) {
     if (e.key === "Escape" || e.key === "Esc") {
         closeModal(e)
     }
-    if (e.key === 'Tab && modal' !== null) {
+    if (e.key === 'Tab' && modal !== null) {
         focusInModal(e)
     }
 })
