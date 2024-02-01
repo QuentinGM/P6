@@ -118,8 +118,8 @@ const openModal = async function (e) {
     modal.removeAttribute('aria-hidden');
     modal.setAttribute('aria-modal','true');
     modal.addEventListener('click', closeModal)
-    modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
-    modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
+    document.querySelector('.js-modal-close').addEventListener('click', closeModal)
+    document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 
     //Reponse
     const response =  await fetch("http://localhost:5678/api/works");
@@ -151,9 +151,9 @@ const nextModale = function() {
     step1.style.display ="none"
     step2.style.display ="block"
     modal.addEventListener('click', closeModal)
-    modal.querySelector('.js-modal-close2').addEventListener('click', closeModal)
-    modal.querySelector('.size-svg').addEventListener('click', openModal)
-    modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
+    document.querySelector('.js-modal-close2').addEventListener('click', closeModal)
+    document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
+    document.querySelector('.size-svg').addEventListener('click', openModal)
 }
 
 
@@ -166,8 +166,8 @@ const closeModal = function (e) {
     modal.setAttribute('aria-hidden', 'true');
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal)
-    modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
-    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
+    document.querySelector('.js-modal-close').removeEventListener('click', closeModal)
+    document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
     modal = null
     gallerieModale.innerHTML = ""
 }
