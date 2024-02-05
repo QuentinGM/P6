@@ -110,7 +110,7 @@ const openModal = async function (e) {
     step1.style.display ="block"
     step2.style.display ="none"
     e.preventDefault()
-    modal = document.querySelector(e.target.getAttribute('href'))
+    modal = document.querySelector("#modal1");
     focusables = Array.from(modal.querySelectorAll(focusableSelector))
     previouslyFocusedElement = document.querySelector(':focus')
     focusables[0].focus()
@@ -125,6 +125,7 @@ const openModal = async function (e) {
     const response =  await fetch("http://localhost:5678/api/works");
     const works = await response.json();
     const gallerieModale = document.querySelector(".photos")
+    gallerieModale.innerHTML= ""
     works.forEach((work) => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
@@ -147,13 +148,25 @@ const openModal = async function (e) {
     button.addEventListener('click', nextModale)
 }
 
-const nextModale = function() {
+const nextModale = async function () {
     step1.style.display ="none"
     step2.style.display ="block"
     modal.addEventListener('click', closeModal)
+    document.querySelector('a[href="#modal1"]').addEventListener('click', openModal);
     document.querySelector('.js-modal-close2').addEventListener('click', closeModal)
     document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
-    document.querySelector('.size-svg').addEventListener('click', openModal)
+
+    //Reponse
+    const response = await fetch('http://localhost:5678/api/categories');
+    const categories = await response.json();
+    const divCategorie = document.querySelector(".categorie")
+    divCategorie.innerHTML= ""
+    categories.forEach((work) => {
+        const option = document.createElement("option");
+        option.setAttribute("data-id", work.id)
+        option.innerText = work.name
+        divCategorie.appendChild(option)
+    })
 }
 
 
