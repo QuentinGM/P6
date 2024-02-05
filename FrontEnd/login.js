@@ -24,7 +24,7 @@ form.addEventListener("submit", async (e) => {
     const readExperience = await reponse.json()
     if (readExperience?.token) {
         window.sessionStorage.loged = true;
-        window.localStorage.setItem("userToken", readExperience.token);
+        window.localStorage.setItem("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4", readExperience.token);
         window.location.href = "index.html";
     } 
     else {

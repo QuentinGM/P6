@@ -144,9 +144,42 @@ const openModal = async function (e) {
         figure.appendChild(figcaption);
         gallerieModale.appendChild(figure);
     });
+    async function deleteWorks() {
+        const trashAll = document.querySelectorAll(".fa-trash-can")
+        trashAll.forEach(trash => {
+            trash.addEventListener("click", async (e) => {
+                e.preventDefault();
+                const id = trash.id;
+                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4";  // Remplace avec ton propre jeton d'accès
+                const init = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                };
+                try {
+                    const response = await fetch(`http://localhost:5678/api/works/${id}`, init);
+                    const data = await response.json();
+                    if (!response.ok) {
+                        console.log("Le delete ne fonctionne pas", response.status, data);
+                        // Gère l'erreur selon tes besoins
+                        return;
+                    }
+                    console.log("Le delete a réussi, nouvelle data :", data);
+                    openModal();
+                } catch (error) {
+                    console.error("Erreur lors de la suppression :", error);
+                }
+            });
+        });
+    }
+    deleteWorks()
     const button = document.querySelector('.photoButton')
     button.addEventListener('click', nextModale)
 }
+
+
 
 const nextModale = async function () {
     step1.style.display ="none"
