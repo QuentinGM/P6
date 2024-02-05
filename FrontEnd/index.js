@@ -155,12 +155,15 @@ const openModal = async function (e) {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
+                        'Accept': '*/*',
                         "Authorization": `Bearer ${token}`
                     }
                 };
                 try {
                     const response = await fetch(`http://localhost:5678/api/works/${id}`, init);
                     const data = await response.json();
+                    console.log("Réponse DELETE :", response.status, data);
+
                     if (!response.ok) {
                         console.log("Le delete ne fonctionne pas", response.status, data);
                         // Gère l'erreur selon tes besoins
