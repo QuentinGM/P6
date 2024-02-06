@@ -150,7 +150,7 @@ const openModal = async function (e) {
             trash.addEventListener("click", async (e) => {
                 e.preventDefault();
                 const id = trash.id;
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4";  // Remplace avec ton propre jeton d'accès
+                const token = window.localStorage.getItem("token")
                 const init = {
                     method: "DELETE",
                     headers: {
@@ -166,7 +166,6 @@ const openModal = async function (e) {
 
                     if (!response.ok) {
                         console.log("Le delete ne fonctionne pas", response.status, data);
-                        // Gère l'erreur selon tes besoins
                         return;
                     }
                     console.log("Le delete a réussi, nouvelle data :", data);
@@ -203,7 +202,46 @@ const nextModale = async function () {
         option.innerText = work.name
         divCategorie.appendChild(option)
     })
+    const labelFile = document.querySelector('.label-file');
+    const fileInput = document.querySelector('#file');
+    const previewImage = document.querySelector('#previewImage');
+    const sizeSvg2 = document.querySelector('.size-svg2');
+    const center4 = document.querySelector('.center4');
+    const center6 = document.querySelector('.center6');
+    const backgroundImage = document.querySelector('.background img');
+    labelFile.addEventListener('click', () => {
+    fileInput.click();
+    });
+    fileInput.addEventListener('change', () => {
+    previewImageFunction();
+    // Appliquer les modifications après avoir sélectionné un fichier
+    labelFile.style.display = 'none';
+    sizeSvg2.style.display = 'none';
+    center4.style.display = 'none';
+    center6.classList.add('test5');
+    backgroundImage.style.display = 'flex';
+    });
+    // Fonction pour prévisualiser l'image
+    const previewImageFunction = () => {
+    const selectedFile = fileInput.files[0];
+    if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            previewImage.src = e.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+        previewImage.style.display = 'flex';
+    };
+    }
+    // Afficher la previewImage une fois que l'image est sélectionnée
+// Appel initial de la fonction de prévisualisation de l'image
+previewImageFunction();
 }
+
+
+
+
+
 
 
 const closeModal = function (e) {
