@@ -365,7 +365,26 @@ footer nav ul {
 	cursor: pointer;
 }
 
+.photoButton2 {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	border-radius: 60px ;
+	height: 36px;
+	width: 237px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 .modifButton {
+	display: flex;
+	justify-content: center;
+}
+
+.modifButton2 {
 	display: flex;
 	justify-content: center;
 }

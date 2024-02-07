@@ -233,9 +233,48 @@ const nextModale = async function () {
         previewImage.style.display = 'flex';
     };
     }
-    // Afficher la previewImage une fois que l'image est sélectionnée
-// Appel initial de la fonction de prévisualisation de l'image
-previewImageFunction();
+    // Fonction METHOD POST
+    async function createWork() {
+    const photoButton = document.querySelector(".photoButton2");
+    console.log(photoButton)
+    photoButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const fileInput = document.getElementById("file");
+        const titleInput = document.getElementById("name");
+        const categorySelect = document.getElementById("cat");
+        if (!fileInput.files.length || !titleInput.value || !categorySelect.value) {
+            console.log("Veuillez sélectionner une photo, remplir le titre et sélectionner une catégorie.");
+            return;
+        }
+        const formData = new FormData();
+        formData.append("photo", fileInput.files[0]);
+        formData.append("title", titleInput.value);
+        formData.append("category", categorySelect.value);
+        const token = window.localStorage.getItem("token");
+        const init = {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            body: formData
+        };
+        try {
+            const response = await fetch("http://localhost:5678/api/works", init);
+            console.log(response)
+            const data = await response.json();
+            console.log("Réponse POST :", response.status, data);
+            if (!response.ok) {
+                console.log("La création n'a pas fonctionné", response.status, data);
+                return;
+            }
+            console.log("La création a réussi, nouvelle data :", data);
+            openModal();
+        } catch (error) {
+            console.error("Erreur lors de la création :", error);
+        }
+    });
+}
+createWork();
 }
 
 
