@@ -163,16 +163,16 @@ const openModal = async function (e) {
                     const response = await fetch(`http://localhost:5678/api/works/${id}`, init);
                     const data = await response.json();
                     console.log("Réponse DELETE :", response.status, data);
-
                     if (!response.ok) {
                         console.log("Le delete ne fonctionne pas", response.status, data);
                         return;
                     }
                     console.log("Le delete a réussi, nouvelle data :", data);
-                    openModal();
-                } catch (error) {
+                    openModal() ;
+                    } catch (error) {
                     console.error("Erreur lors de la suppression :", error);
                 }
+                window.location.reload();
             });
         });
     }
@@ -181,8 +181,6 @@ const openModal = async function (e) {
     button.addEventListener('click', nextModale)
 }
 
-
-
 const nextModale = async function () {
     step1.style.display ="none"
     step2.style.display ="block"
@@ -190,7 +188,6 @@ const nextModale = async function () {
     document.querySelector('a[href="#modal1"]').addEventListener('click', openModal);
     document.querySelector('.js-modal-close2').addEventListener('click', closeModal)
     document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
-
     //Reponse
     const response = await fetch('http://localhost:5678/api/categories');
     const categories = await response.json();
@@ -198,7 +195,7 @@ const nextModale = async function () {
     divCategorie.innerHTML= ""
     categories.forEach((work) => {
         const option = document.createElement("option");
-        option.setAttribute("data-id", work.id)
+        option.setAttribute("value", work.id)
         option.innerText = work.name
         divCategorie.appendChild(option)
     })
@@ -235,53 +232,63 @@ const nextModale = async function () {
     }
     // Fonction METHOD POST
     async function createWork() {
-    const photoButton = document.querySelector(".photoButton2");
-    console.log(photoButton)
-    photoButton.addEventListener("click", async (e) => {
-        e.preventDefault();
+        const photoButton2 = document.querySelector(".photoButton2");
+        const photoButton3 = document.querySelector(".photoButton3"); // Sélection du bouton .photoButton3
+        console.log(photoButton2);
         const fileInput = document.getElementById("file");
         const titleInput = document.getElementById("name");
         const categorySelect = document.getElementById("cat");
-        if (!fileInput.files.length || !titleInput.value || !categorySelect.value) {
-            console.log("Veuillez sélectionner une photo, remplir le titre et sélectionner une catégorie.");
-            return;
+        function toggleButtons() {
+            if (fileInput.files.length && titleInput.value && categorySelect.value) {
+                photoButton2.style.display = "none";
+                photoButton3.style.display = "block"; // Affichage du bouton .photoButton3
+            } else {
+                photoButton2.style.display = "flex";
+                photoButton3.style.display = "none"; // Masquage du bouton .photoButton3
+            }
         }
-        const formData = new FormData();
-        formData.append("photo", fileInput.files[0]);
-        formData.append("title", titleInput.value);
-        formData.append("category", categorySelect.value);
-        const token = window.localStorage.getItem("token");
-        const init = {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            },
-            body: formData
-        };
-        try {
-            const response = await fetch("http://localhost:5678/api/works", init);
-            console.log(response)
-            const data = await response.json();
-            console.log("Réponse POST :", response.status, data);
-            if (!response.ok) {
-                console.log("La création n'a pas fonctionné", response.status, data);
+        // Appeler toggleButtons pour vérifier les champs dès que le contenu change
+        [fileInput, titleInput, categorySelect].forEach(input => {
+            input.addEventListener('input', toggleButtons);
+        });
+        photoButton3.addEventListener("click", async (e) => {
+            e.preventDefault();
+            if (!fileInput.files.length || !titleInput.value || !categorySelect.value) {
+                console.log("Veuillez sélectionner une photo, remplir le titre et sélectionner une catégorie.");
                 return;
             }
-            console.log("La création a réussi, nouvelle data :", data);
-            openModal();
-        } catch (error) {
-            console.error("Erreur lors de la création :", error);
-        }
-    });
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+            formData.append("title", titleInput.value);
+            formData.append("category", categorySelect.value);
+            console.log("Essaie",formData);
+            const token = window.localStorage.getItem("token");
+            const init = {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                body: formData
+            };
+            try {
+                const response = await fetch("http://localhost:5678/api/works", init);
+                console.log(response);
+                const data = await response.json();
+                console.log("Réponse POST :", response.status, data);
+                if (!response.ok) {
+                    console.log("La création n'a pas fonctionné", response.status, data);
+                    return;
+                }
+                console.log("La création a réussi, nouvelle data :", data);
+                openModal();
+                window.location.reload();
+            } catch (error) {
+                console.error("Erreur lors de la création :", error);
+            }
+        });
+    }
+    createWork();
 }
-createWork();
-}
-
-
-
-
-
-
 
 const closeModal = function (e) {
     if (modal === null) return
