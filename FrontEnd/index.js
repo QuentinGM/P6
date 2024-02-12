@@ -93,7 +93,7 @@ const admin = document.querySelector("header nav .admin");
 const logout = document.querySelector("header nav .logout");
 
 // Si je suis donc connecté en mode Admin, j'efface le texte sur Admin et modifie le texte sur le logout ce qui me permet d'afficher logout comme
-// bouton de deconnexion. ensuite je fais une boucle pour montrer que si je suis déconnecté, je vais donc chercher par un getElementById ayant comme
+// bouton de deconnexion. Ensuite je fais une boucle pour montrer que si je suis déconnecté, je vais donc chercher par un getElementById ayant comme
 // classe "div-admin" pour la stocker dans ma variable element qui ensuite se supprimera si j'ai donc le statut "déconnecté". J'ai également fait
 // un tableau modifier pour récupérer l'autre classe "div-nonadmin" en supprimant la classe "see" et en ajoutant la classe "modif" pour modifier
 // au niveau de la page d'accueuil mon index de connexion.
@@ -109,6 +109,9 @@ if (loged == "true") {
     const modifier = document.getElementById("div-nonadmin");
     modifier.classList.remove("see");
     modifier.classList.add("modif");
+    const editionMode = document.getElementById("div-nonadmin3");
+    editionMode.classList.remove("see");
+    editionMode.classList.add("modif2");
 }
 
 // 1ère Modale, création et ouverture + mise en place de la Method DELETE //
@@ -127,7 +130,7 @@ let previouslyFocusedElement = null
 const step1 = document.querySelector("#step1")
 const step2 = document.querySelector("#step2")
 
-// Je crée donc une fonction asynchrone qui va obtiendra le paramètre e comme objet d'évènement.
+// Je crée donc une fonction asynchrone qui obtiendra le paramètre e comme objet d'évènement.
 // Je passe mon step1 en display ""block""" et mon step2 en display "none" pour avoir seulement que la 1ère modale.
 // J'empêche le comportement par défaut de mon évènement avec e.preventDefault() / Exemple si demandé : Si mon évènement est un clic sur un lien, ceci m'empêchera de
 // naviguer vers la nouvelle page.
@@ -157,7 +160,7 @@ const openModal = async function (e) {
     document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 
     //////////////////////////////////////////////////////////////////////////////////////////// 
-    /////  DÉCRIRE LA CLOTURATION DE LA MODALE AVANT D'EXPLIQUER LA METHODE DELETE (L.334) /////
+    /////  DÉCRIRE LA CLOTURATION DE LA MODALE AVANT D'EXPLIQUER LA METHODE DELETE (L.405) /////
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     // Je crée donc une constante response qui est égale à l'attente de la réponse du serveur localhost pour les api/works
@@ -297,7 +300,7 @@ const openModal = async function (e) {
     });
 
     // Fonction pour prévisualiser l'image
-    // A nouveau, je recrée ma constante previewImageFunction qui va me permettre de faire une fonciton fleché derrière
+    // A nouveau, je recrée ma constante previewImageFunction qui va me permettre de faire une fonction fleché derrière
     // Où je récupère mon fichier sélectionné pour le stocké dans une constante appellée selectedFile
     // Si mon fichier est sélectionné, je crée une nouvelle instance qui est nommée FileReader ce qui me permet de lire le contenu du fichier
     // Ensuite mon reader.onload définit un gestionnaire d'évènements qui va se déclenchera lorsque la lecture du fichier est terminée
@@ -408,7 +411,7 @@ const openModal = async function (e) {
 
     // Je crée donc ma constante qui portera closeModal avec une fonction d'évènement
     // Cette fonction ne sera utilisé si ma modale est strictement null ducoup je la retourne
-    // Et si mon dernier élément focus est stictement inégale à null donc que j'ai bien décidé de fermer ma modale.
+    // Et si mon dernier élément focus est strictement inégale à null donc que j'ai bien décidé de fermer ma modale.
     // Je reprend la base de l'ouverture de ma modale les changements c'est que aria-hidden passera en true et sera rajouté 
     // Tandis que mon aria modal sera supprimer ainsi que mon eventListener sur le click sera supprimé aussi ainsi que tout les EventListener.
     // Je redéfinis comme quoi ma modal est = à null et je demande le vidage de ma gallerieModale avec le .innerHTML = à "".
@@ -444,7 +447,7 @@ const stopPropagation = function (e) {
     // réinistialisé à 0.
     // Mon troisième if indique que si mon index est inférieur à 0 cela signifie que j'ai atteint le premier élément que j'avais en focus et que je souhaite revenir
     // au dernier dans ce cas mon index est réinistialiser à la longueur de mon tableau -1.
-    // Et mon focusables[index].focus() Cela me permet de naviguer d'un élément à l'autre à l'intérieur de ma boôte modale avec les touches de tabulation et de shift
+    // Et mon focusables[index].focus() Cela me permet de naviguer d'un élément à l'autre à l'intérieur de ma boîte modale avec les touches de tabulation et de shift
     // + tabulations.
 
 const focusInModal = function (e) {

@@ -17,7 +17,7 @@ form.addEventListener("submit", async (e) => {
     }
 
     // Ma const user convertit mon objet login en chaîne JSON et stocke mon résultat dans cette constante
-    // J'effectue une requête post vers mon URL spécifiée avec mes options spécifiées également.
+    // J'effectue une requête POST vers mon URL spécifiée avec mes options spécifiées également.
     // Donc ensuite j'attend la réponse de ma requête
     // Si mon token existe bien dans l'objet JSON appartenant ci-dessus, je suis donc considéré comme "connecté" et ma page me redirige sous index.html
     // mais avec les permissions d'administation. Sinon, mon email où mon mot de passe est incorrect.
